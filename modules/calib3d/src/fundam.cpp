@@ -526,8 +526,8 @@ int CvFMEstimator::run8Point( const CvMat* _m1, const CvMat* _m2, CvMat* _fmatri
     W.data.db[8] = 0.;
 
     // F0 <- U*diag([W(1), W(2), 0])*V'
-	cvGEMM(&U, &W, 1., 0, 0., &TF, 0);
-	cvGEMM(&TF, &V, 1., 0, 0., &F0, CV_GEMM_B_T);
+    cvGEMM( &U, &W, 1., 0, 0., &TF, CV_GEMM_A_T );
+    cvGEMM( &TF, &V, 1., 0, 0., &F0, 0/*CV_GEMM_B_T*/ );
 
     // apply the transformation that is inverse
     // to what we used to normalize the point coordinates
